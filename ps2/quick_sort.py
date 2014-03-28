@@ -1,14 +1,15 @@
 import sys
 
-bad_global_count = 0 # this count is needed basically to test that you implemented quicksort right so whatevs
+# this count is needed basically to test that you implemented quicksort right
+bad_global_count = 0 
 
 def quick_sort(items, left=None, right=None, pivot_mode='first'):
     """Sorts things, ties the room together."""
+    global bad_global_count
     if left == None:
         left = 0
     if right == None:
         right = len(items) - 1
-    global bad_global_count
     bad_global_count += right - left
     choose_pivot_idx(items, left, right, pivot_mode)
     newIndex = partition(items, left, right)
@@ -16,8 +17,8 @@ def quick_sort(items, left=None, right=None, pivot_mode='first'):
     if right - newIndex > 1: quick_sort(items, newIndex + 1, right, pivot_mode)
 
 def partition(items, left, right):
-    """Accepts list and left/right indexes to work within.
-
+    """
+    Accepts list and left/right indexes to work within.
     Partitions sublist around value of leftmost item.
     """
     pivot, i = items[left], left + 1
